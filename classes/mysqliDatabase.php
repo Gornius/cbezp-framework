@@ -7,7 +7,7 @@ class mysqliDatabase implements IDatabase {
     private $mysqli_instance;
 
     public function __construct($config_file = 'config/mysqli.php') { 
-        $mysqli_config = include_once $config_file;
+        $mysqli_config = include $config_file;
 
         $this->mysqli_instance = new mysqli(
             $mysqli_config['address'],
