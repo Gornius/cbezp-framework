@@ -1,7 +1,9 @@
 <?php
 
 include_once 'classes/Dependencies.php';
-include_once 'classes/mysqliDatabase.php';
+$deps = new Dependencies();
 
-$dependencies = new Dependencies();
-$dependencies->database->query('select * from test');
+$ss = $deps->smarty;
+$ss->assign('title', 'test');
+$ss->assign('page_content', 'test');
+$ss->display('home.tpl');
