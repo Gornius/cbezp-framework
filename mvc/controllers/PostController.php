@@ -7,7 +7,7 @@ class PostController {
         include_once 'mvc/views/Post/PostList.php';
         $post = new Post;
 
-        $posts = $post->get_list();
+        $posts = $post->get_list('deleted = 0');
         $view = new PostList;
         $view->display($posts);
     }
