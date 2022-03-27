@@ -1,12 +1,29 @@
 <?php
 
 include_once 'classes/Dependencies.php';
-include_once 'classes/models/Mydlo.php';
 
-$ss = Dependencies::get_smarty();
-$ss->assign('title', 'test');
-$ss->assign('page_content', 'test');
-$ss->display('home.tpl');
+$model = $_GET['model'];
+$action = $_GET['action'];
+if (empty($action)) $action = 'list';
 
-$mydelko = new Mydlo();
-$mydelko->reset_db();
+if (empty($model)) {
+    $ss = Dependencies::get_smarty();
+    $ss->assign('title', 'Homepage');
+    $ss->assign('page_content', 'Content');
+    $ss->display('home.tpl');
+}
+
+else {
+    $controller_file = 'mvc/controllers/' . $model .'Controller.php';
+    if(file_exists($controller_file)) {
+        include_once 'mvc/controllers/' . $model .'Controller.php';
+
+        $contoller_class = $model . 'Controller';
+        $controller = new $contoller_class;
+
+        $controller->$action();
+    }
+    else {
+        echo 'Provided route doesn\'t exist!'; die;
+    }
+}

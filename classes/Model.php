@@ -1,7 +1,5 @@
 <?php
 
-use JetBrains\PhpStorm\Deprecated;
-
 include_once 'classes/Dependencies.php';
 
 class Model {
@@ -31,5 +29,22 @@ class Model {
         $sql .= ", PRIMARY KEY (id))";
         
         $db->query($sql);
+    }
+
+    public function get_list($where="") {
+        $db = Dependencies::get_database();
+        $sql = "SELECT * FROM $this->table_name";
+        $rows = [];
+        if (!empty($where)) {
+            $sql .= " WHERE $where";
+        }
+        $result = $db->query($sql);
+
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $results[] = $row;
+            }
+        }
+        return $results;
     }
 }

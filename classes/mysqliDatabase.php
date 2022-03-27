@@ -18,6 +18,6 @@ class mysqliDatabase implements IDatabase {
     }
 
     public function query($query) {
-        $this->mysqli_instance->query($query);
+        return $this->mysqli_instance->query($query);
     }
 }
