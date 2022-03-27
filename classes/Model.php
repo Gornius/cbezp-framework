@@ -30,4 +30,15 @@ class Model {
         $db = Dependencies::get_database();
         return $db->get_record($this, $id);
     }
+
+    public function save($record) {
+        $db = Dependencies::get_database();
+
+        if(empty($record['id'])) {
+            $db->add_record($this, $record);
+        }
+        else {
+            $db->edit_record($this, $record['id'], $record);
+        }
+    }
 }

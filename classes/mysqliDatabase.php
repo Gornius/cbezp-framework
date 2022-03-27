@@ -66,4 +66,33 @@ class mysqliDatabase implements IDatabase {
         echo("Record was not found!");
         return NULL;
     }
+
+    public function add_record(Model $model, $record) {
+        $db = $this->mysqli_instance;
+        $sql = "INSERT INTO $model->table_name (" ;
+        foreach($model->fields as $field => $params) {
+            $sql .= "$field,";
+        }
+        $sql = rtrim($sql, ",");
+        $sql .= ") VALUES (";
+        foreach($model->fields as $field => $params) {
+            $sql .= "'$record[$field]',";
+        }
+        $sql = rtrim($sql, ",");
+        $sql .= ")";
+
+        $this->query($sql);
+    }
+
+    public function edit_record(Model $model, $id, $record) {
+        $db = $this->mysqli_instance;
+        $sql = "UPDATE $model->table_name SET ";
+        foreach($model->fields as $field => $params) {
+            $sql .= " $field = '$record[$field]',";
+        }
+        $sql = rtrim($sql, ',');
+
+        $sql .= " WHERE id = $id";
+        $this->query($sql);
+    }
 }

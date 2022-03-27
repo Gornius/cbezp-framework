@@ -11,9 +11,6 @@ class Post extends Model {
         'type' => [
             'db_type' => 'varchar(255)',
         ],
-        'name' => [
-            'db_type' => 'varchar(255)',
-        ],
         'message' => [
             'db_type' => 'varchar(255)',
         ],

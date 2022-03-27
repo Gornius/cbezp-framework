@@ -8,4 +8,6 @@ interface IDatabase {
     public function reset_db(Model $model);
     public function get_list(Model $model, $where);
     public function get_record(Model $model, $id);
+    public function add_record(Model $model, $record);
+    public function edit_record(Model $model, $id, $record);
 }

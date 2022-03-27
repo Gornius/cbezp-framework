@@ -16,7 +16,7 @@ class PostController {
         $record_id = $_GET['id'];
         if (!empty($record_id)){
             $post = new Post;
-            $record = $post->get_record('1');
+            $record = $post->get_record($record_id);
 
             if (!empty($record)) {
                 include_once 'mvc/views/Post/PostEdit.php';
@@ -24,12 +24,14 @@ class PostController {
                 $view->display($record);
             }
             else {
-                echo "Record couldn't be loaded!";
+                echo "<br>Record couldn't be loaded!";
             }
 
         }
         else {
-            echo("No record id specified!");
+            include_once 'mvc/views/Post/PostEdit.php';
+            $view = new PostEdit;
+            $view->display(NULL); 
         }
     }
 
@@ -37,5 +39,15 @@ class PostController {
         $post = new Post;
         $post->reset_db();
         echo 'Table "' . $post->table_name . '" has been reset.';
+    }
+
+    public function save() {
+        $post = new Post;
+        $record = [];
+        foreach ($post->fields as $field => $params) {
+            $record[$field] = $_POST[$field];
+        }
+        $record['id'] = $_POST['id'];
+        $post->save($record);
     }
 }
