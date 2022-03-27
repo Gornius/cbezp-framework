@@ -25,4 +25,9 @@ class Model {
         $db = Dependencies::get_database();
         return $db->get_list($this, $where);        
     }
+
+    public function get_record($id) {
+        $db = Dependencies::get_database();
+        return $db->get_record($this, $id);
+    }
 }

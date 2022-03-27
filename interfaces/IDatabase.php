@@ -7,4 +7,5 @@ interface IDatabase {
     public function query(string $query);
     public function reset_db(Model $model);
     public function get_list(Model $model, $where);
+    public function get_record(Model $model, $id);
 }
