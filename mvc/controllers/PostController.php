@@ -49,5 +49,6 @@ class PostController {
         }
         $record['id'] = $_POST['id'];
         $post->save($record);
+        header('Location: /index.php?model=Post');
     }
 }
