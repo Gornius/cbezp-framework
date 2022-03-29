@@ -35,12 +35,6 @@ class PostController {
         }
     }
 
-    public function reset_db() {
-        $post = new Post;
-        $post->reset_db();
-        echo 'Table "' . $post->table_name . '" has been reset.';
-    }
-
     public function save() {
         $post = new Post;
         $record = [];
