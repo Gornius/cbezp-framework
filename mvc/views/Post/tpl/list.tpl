@@ -1,9 +1,10 @@
 {include file='page/header.tpl'}
-<table>
+<table class="table">
 <header>
     <th>
         <td>Tytuł</td>
         <td>Wiadomość</td>
+        <td>Akcje</td>
     </th>
 </header>
 <tbody>
@@ -17,5 +18,5 @@
 {/foreach}
 </tbody>
 </table>
-<a href="index.php?model=Post&action=edit">New Post</a>
+<a href="index.php?model=Post&action=edit"><button class="btn btn-primary">New Post</button></a>
 {include file='page/footer.tpl'}
