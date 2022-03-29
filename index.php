@@ -9,7 +9,6 @@ if (empty($action)) $action = 'list';
 if (empty($model)) {
     $ss = Dependencies::get_smarty();
     $ss->assign('title', 'Homepage');
-    $ss->assign('page_content', 'Content');
     $ss->display('home.tpl');
 }
 

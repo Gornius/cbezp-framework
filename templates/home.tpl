@@ -1,3 +1,3 @@
 {include file='page/header.tpl'}
-    {$page_content}
+    <a href="?model=Post">Posty</a>
 {include file='page/footer.tpl'}
