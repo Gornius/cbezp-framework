@@ -13,7 +13,8 @@
         <td>{$post['id']}</td>
         <td>{$post['name']}</td>
         <td>{$post['message']}</td>
-        <td><a href="index.php?model=Post&action=edit&id={$post['id']}">✏️</td>
+        <td><a href="index.php?model=Post&action=edit&id={$post['id']}">✏️</a>
+        <a href="index.php?model=Post&action=delete&id={$post['id']}">❌</a></td>
     </tr>
 {/foreach}
 </tbody>

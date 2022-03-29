@@ -45,4 +45,11 @@ class PostController {
         $post->save($record);
         header('Location: /index.php?model=Post');
     }
+
+    public function delete() {
+        $id = $_GET['id'];
+        $post = new Post;
+        $record = $post->delete($id);
+        header('Location: /index.php?model=Post');
+    }
 }

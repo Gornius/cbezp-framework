@@ -10,4 +10,5 @@ interface IDatabase {
     public function get_record(Model $model, $id);
     public function add_record(Model $model, $record);
     public function edit_record(Model $model, $id, $record);
+    public function delete_record(Model $model, $id);
 }

@@ -41,4 +41,9 @@ class Model {
             $db->edit_record($this, $record['id'], $record);
         }
     }
+
+    public function delete($id) {
+        $db = Dependencies::get_database();
+        $db->delete_record($this, $id);
+    }
 }
