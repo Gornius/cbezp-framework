@@ -22,9 +22,8 @@ class mysqliDatabase implements IDatabase {
     }
 
     public function reset_db(Model $model) {
-        $db = $this->mysqli_instance;
         $sql = "DROP TABLE IF EXISTS $model->table_name CASCADE";
-        $db->query($sql);
+        $this->query($sql);
 
         $sql = "CREATE TABLE IF NOT EXISTS $model->table_name (
             id INT NOT NULL AUTO_INCREMENT";
@@ -33,17 +32,16 @@ class mysqliDatabase implements IDatabase {
         }
         $sql .= ", PRIMARY KEY (id))";
         
-        $db->query($sql);
+        $this->query($sql);
     }
 
     public function get_list($model, $where="") {
-        $db = $this->mysqli_instance;
         $sql = "SELECT * FROM $model->table_name";
         $rows = [];
         if (!empty($where)) {
             $sql .= " WHERE $where";
         }
-        $result = $db->query($sql);
+        $result = $this->query($sql);
 
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
@@ -54,9 +52,8 @@ class mysqliDatabase implements IDatabase {
     }
 
     public function get_record($model, $id) {
-        $db = $this->mysqli_instance;
         $sql = "SELECT * FROM $model->table_name WHERE id=$id LIMIT 1";
-        $result = $db->query($sql);
+        $result = $this->query($sql);
 
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
@@ -68,7 +65,6 @@ class mysqliDatabase implements IDatabase {
     }
 
     public function add_record(Model $model, $record) {
-        $db = $this->mysqli_instance;
         $sql = "INSERT INTO $model->table_name (" ;
         foreach($model->fields as $field => $params) {
             $sql .= "$field,";
@@ -85,7 +81,6 @@ class mysqliDatabase implements IDatabase {
     }
 
     public function edit_record(Model $model, $id, $record) {
-        $db = $this->mysqli_instance;
         $sql = "UPDATE $model->table_name SET ";
         foreach($model->fields as $field => $params) {
             $sql .= " $field = '$record[$field]',";
