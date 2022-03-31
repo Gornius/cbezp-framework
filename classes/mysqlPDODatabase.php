@@ -28,13 +28,9 @@ class mysqlPDODatabase implements IDatabase {
     }
     
     public function reset_db(Model $model) {
-        $sql = "DROP TABLE IF EXISTS :tablename CASCADE";
-        $binds = [
-            ':tablename' => [
-                'value' => $model->table_name,
-                'pdoparam' => PDO::PARAM_STR,
-            ],
-        ];
+        $sql = "DROP TABLE IF EXISTS $model->table_name CASCADE";
+        $this->query($sql);
+
         $sql = "CREATE TABLE IF NOT EXISTS $model->table_name (
             id INT NOT NULL AUTO_INCREMENT";
         foreach ($model->fields as $key => $value) {
