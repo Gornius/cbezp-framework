@@ -2,9 +2,8 @@
 
 include_once 'classes/Dependencies.php';
 
-$model = $_GET['model'];
-$action = $_GET['action'];
-if (empty($action)) $action = 'list';
+$model = (!empty($_GET['model'])) ? $_GET['model'] : NULL;
+$action = (!empty($_GET['action'])) ? $_GET['action'] : 'list';
 
 if (empty($model)) {
     $ss = Dependencies::get_smarty();

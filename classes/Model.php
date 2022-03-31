@@ -19,7 +19,7 @@ class Model {
 
     private function setup_fields() {
         foreach($this->fields as $key => $value) {
-            $this->$key = $value['default'];
+            if(!empty($value['default'])) $this->$key = $value['default'];
         }
     }
 
