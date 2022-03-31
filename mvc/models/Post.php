@@ -10,12 +10,14 @@ class Post extends Model {
         ],
         'type' => [
             'db_type' => 'varchar(255)',
+            'possible_values' => ['private', 'public'],
         ],
         'message' => [
             'db_type' => 'varchar(255)',
         ],
         'deleted' => [
             'db_type' => 'boolean',
+            'possible_values' => [0, 1],
             'default' => 0,
         ]
     ];

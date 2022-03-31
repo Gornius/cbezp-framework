@@ -79,6 +79,7 @@ class mysqlPDODatabase implements IDatabase {
         $sql = rtrim($sql, ",");
         $sql .= ") VALUES (";
         foreach($model->fields as $field => $params) {
+            if (!$model->validate_field($field, $record[$field])) die("Error validating $field");
             $sql .= "'$record[$field]',";
         }
         $sql = rtrim($sql, ",");

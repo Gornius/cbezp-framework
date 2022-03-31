@@ -4,6 +4,13 @@ include_once 'classes/Dependencies.php';
 
 class Model {
     public $table_name = 'default';
+
+    /**
+     * Fields can have
+     * db_type - database type
+     * possible_values - array of acceptable values by validator
+     * default - default value
+     */
     public $fields = [];
 
     public function __construct() {
@@ -14,6 +21,11 @@ class Model {
         foreach($this->fields as $key => $value) {
             $this->$key = $value['default'];
         }
+    }
+
+    public function validate_field($field_name, $field_value) {
+        if (empty($this->fields[$field_name]['possible_values'])) return true;
+        return in_array($field_value, $this->fields[$field_name]['possible_values']);
     }
 
     public function reset_db() {
