@@ -1,6 +1,7 @@
 <?php
 
 include_once 'mvc/models/Post.php';
+include_once 'classes/UserInputFilterService.php';
 
 class PostController {
     public function list() {
@@ -40,6 +41,8 @@ class PostController {
         $record = [];
         foreach ($post->fields as $field => $params) {
             $record[$field] = $_POST[$field];
+            if ($field == 'name') $record[$field] = UserInputFilterService::filter_user_input($record[$field], UserInputFilterService::NAME_FILTER);
+            if ($field == 'message') $record[$field] = UserInputFilterService::filter_user_input($record[$field], UserInputFilterService::NAME_FILTER);
         }
         $record['id'] = $_POST['id'];
         $post->save($record);
