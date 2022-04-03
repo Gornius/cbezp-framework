@@ -55,6 +55,21 @@ class mysqlPDODatabase implements IDatabase {
 
         return $results;
     }
+    
+    public function find_record(Model $model, $where) {
+        $sql = "SELECT * FROM $model->table_name";
+        $rows = [];
+        if (!empty($where)) {
+            $sql .= " WHERE $where LIMIT 1";
+        }
+        $result = $this->query($sql);
+
+        echo $sql;
+
+        foreach($result as $row) {
+            return $row;
+        }
+    }
 
     public function get_record(Model $model, $id) {
         $sql = "SELECT * FROM $model->table_name WHERE id=$id LIMIT 1";

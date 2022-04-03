@@ -1,9 +1,9 @@
 {include file='page/header.tpl'}
-<form style="width: 400px;" action='index.php?model=User&action=register' method='post'>
+<form style="width: 400px;" action='index.php?model=User&action=login' method='post'>
     Name:<br>
     <input class="form-control" type="text" id="name" name="name" value="{$record['name']}" /><br>
     Password:<br>
     <input class="form-control" type="password" id="password" name="password" value="{$record['name']}" /><br>
-    <input class ="btn btn-primary" type="submit" value="Save" />
+    <input class ="btn btn-primary" type="submit" value="Login" />
 </form>
 {include file='page/footer.tpl'}

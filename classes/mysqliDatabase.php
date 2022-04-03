@@ -51,6 +51,21 @@ class mysqliDatabase implements IDatabase {
         return $results;
     }
 
+    public function find_record($model, $where="") {
+        $sql = "SELECT * FROM $model->table_name";
+        $rows = [];
+        if (!empty($where)) {
+            $sql .= " WHERE $where LIMIT 1";
+        }
+        $result = $this->query($sql);
+
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                return $row;
+            }
+        }
+    }
+
     public function get_record($model, $id) {
         $sql = "SELECT * FROM $model->table_name WHERE id=$id LIMIT 1";
         $result = $this->query($sql);

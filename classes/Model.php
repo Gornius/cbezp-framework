@@ -43,6 +43,11 @@ class Model {
         return $db->get_record($this, $id);
     }
 
+    public function find_record($where) {
+        $db = Dependencies::get_database();
+        return $db->find_record($this, $where);
+    }
+
     public function save($record) {
         $db = Dependencies::get_database();
 

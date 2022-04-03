@@ -2,6 +2,9 @@
 
 include_once 'classes/Dependencies.php';
 
+session_start();
+echo 'Logged in as ' . $_SESSION['user'] . '<br>';
+
 $model = (!empty($_GET['model'])) ? $_GET['model'] : NULL;
 $action = (!empty($_GET['action'])) ? $_GET['action'] : 'list';
 
