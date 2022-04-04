@@ -3,10 +3,13 @@
 include_once 'classes/Dependencies.php';
 
 session_start();
-echo 'Logged in as ' . $_SESSION['user'] . '<br>';
 
 $model = (!empty($_GET['model'])) ? $_GET['model'] : NULL;
 $action = (!empty($_GET['action'])) ? $_GET['action'] : 'list';
+
+$page_header = Dependencies::get_smarty();
+$page_header->assign('user', $_SESSION['user']);
+$page_header->display('page/header.tpl');
 
 if (empty($model)) {
     $ss = Dependencies::get_smarty();
@@ -28,3 +31,6 @@ else {
         echo 'Provided route doesn\'t exist!'; die;
     }
 }
+
+$page_header = Dependencies::get_smarty();
+$page_header->display('page/footer.tpl');

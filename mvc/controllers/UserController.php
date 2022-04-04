@@ -16,8 +16,17 @@ class UserController {
         foreach($user->fields as $field => $params) {
             $record[$field] = $_POST[$field];
         }
-        $user->save($record);
-        echo 'Registered successfully!';
+
+        $user_in_db = $user->find_record("name = '".$record['name']."'");
+        if(!empty($user_in_db)) {
+            echo 'Użytkownik już istnieje!<br>';
+            $this->view_register();
+        }
+        else {
+            $user->save($record);
+            echo 'Registered successfully!';
+            header('Location: /');
+        }
     }
 
     public function view_login(){ 
@@ -35,15 +44,18 @@ class UserController {
         $user_in_db = $user->find_record("name = '".$record['name']."'");
 
         if(password_verify($record['password'], $user_in_db['password'])) {
-            $_SESSION['user'] = $record['name'];
+            $_SESSION['user'] = $user_in_db;
+            header('Location: /');
         }
 
         else {
-            echo 'Nieprawidlowe dane';
+            echo 'Nieprawidlowe dane<br>';
+            $this->view_login();
         }
     }
 
     public function logout() {
         unset($_SESSION['user']);
+        header('Location: /');
     }
 }

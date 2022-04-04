@@ -1,4 +1,3 @@
-{include file='page/header.tpl'}
 <table class="table">
 <header>
     <th>
@@ -20,4 +19,3 @@
 </tbody>
 </table>
 <a href="index.php?model=Post&action=edit"><button class="btn btn-primary">New Post</button></a>
-{include file='page/footer.tpl'}

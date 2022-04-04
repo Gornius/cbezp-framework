@@ -64,8 +64,6 @@ class mysqlPDODatabase implements IDatabase {
         }
         $result = $this->query($sql);
 
-        echo $sql;
-
         foreach($result as $row) {
             return $row;
         }
