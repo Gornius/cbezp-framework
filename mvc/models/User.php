@@ -15,6 +15,9 @@ class User extends Model {
         'email' => [
             'db_type' => 'varchar(255)',
         ],
+        'uses_2step' => [
+            'db_type' => 'bool',
+        ]
     ];
 
     // Override save method se we store hash instead of plain text
