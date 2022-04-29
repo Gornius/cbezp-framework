@@ -2,7 +2,18 @@
 
 include_once 'classes/Dependencies.php';
 
+
 session_start();
+$expire_time = $_SESSION['expire_time'];
+if (!empty($expire_time)) {
+    if ($expire_time < time()) {
+        session_destroy();
+    }
+}
+else {
+    $_SESSION['expire_time'] = time() + 5*60;
+}
+
 
 $model = (!empty($_GET['model'])) ? $_GET['model'] : NULL;
 $action = (!empty($_GET['action'])) ? $_GET['action'] : 'list';
