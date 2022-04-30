@@ -21,7 +21,7 @@ class UserController {
         // Ensure database gets checkbox value value
         // TODO?: Might implement that later in db
 
-        if (empty($record['uses_2step'])) $record['uses_2auth'] = '0';
+        if (empty($record['uses_2step'])) $record['uses_2step'] = '0';
 
         $user_in_db = $user->find_record("name = '".$record['name']."'");
         if(!empty($user_in_db)) {
