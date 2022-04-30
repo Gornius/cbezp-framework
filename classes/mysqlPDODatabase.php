@@ -28,7 +28,13 @@ class mysqlPDODatabase implements IDatabase {
     }
     
     public function reset_db(Model $model) {
+        $sql = "SET FOREIGN_KEY_CHECKS = 0";
+        $this->query($sql);
+
         $sql = "DROP TABLE IF EXISTS $model->table_name CASCADE";
+        $this->query($sql);
+
+        $sql = "SET FOREIGN_KEY_CHECKS = 1";
         $this->query($sql);
 
         $sql = "CREATE TABLE IF NOT EXISTS $model->table_name (
@@ -36,6 +42,15 @@ class mysqlPDODatabase implements IDatabase {
         foreach ($model->fields as $key => $value) {
             $sql .= ", $key " . $value['db_type'];
         }
+
+        foreach($model->fields as $field => $params) {
+            if (!empty($params['relationship'])) {
+                $table = $params['relationship']['table'];
+                $fk = $params['relationship']['foreign_key'];
+                $sql .= ", FOREIGN KEY ($field) REFERENCES $table($fk)";
+            }
+        }
+
         $sql .= ", PRIMARY KEY (id))";
 
         return $this->query($sql);
