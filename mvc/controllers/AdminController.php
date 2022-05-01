@@ -1,6 +1,6 @@
 <?php
 
-class AdminController {
+class AdminController extends Controller{
     public function list() {
         $this->reset_db();
     }

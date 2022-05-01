@@ -1,6 +1,6 @@
 <?php
 
-class PostController {
+class PostController extends Controller{
     public function list() {
         $post = new Post;
 

@@ -1,6 +1,6 @@
 <?php
 
-class UserController {
+class UserController extends Controller{
     public function view_register() {
         $view = new UserRegister;
         $view->display();
