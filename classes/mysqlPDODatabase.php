@@ -124,9 +124,16 @@ class mysqlPDODatabase implements IDatabase {
 
     }
 
-    public function delete_record(Model $model, $id) {
+    public function soft_delete_record(Model $model, $id) {
         $db = $this->mysqli_instance;
         $sql = "UPDATE $model->table_name SET deleted=1 WHERE id=$id LIMIT 1";
+
+        return $this->query($sql);
+    }
+
+    public function delete_record(Model $model, $id) {
+        $db = $this->mysqli_instance;
+        $sql = "DELETE FROM $model->table_name WHERE id=$id LIMIT 1";
 
         return $this->query($sql);
     }
