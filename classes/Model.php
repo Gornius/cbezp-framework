@@ -63,4 +63,15 @@ class Model {
         $db = Dependencies::get_database();
         $db->delete_record($this, $id);
     }
+
+    /**
+     * Method meant to be overriden, runs after model is initiated in databse,
+     * so for example you can use it to create default set of objects
+     *
+     * @return void
+     * 
+     */
+    public function init() {
+    }
+
 }

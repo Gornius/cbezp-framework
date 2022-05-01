@@ -13,6 +13,9 @@ class AdminController {
             include_once $resetmodel_path;
             $model = new $resetmodel_name;
             $model->reset_db();
+
+            $model->init();
+
             echo "Database table '$model->table_name' has been reset!";
         }
     }
