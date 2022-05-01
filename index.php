@@ -10,9 +10,8 @@ if (!empty($expire_time)) {
         session_destroy();
     }
 }
-else {
-    $_SESSION['expire_time'] = time() + 5*60;
-}
+
+$_SESSION['expire_time'] = time() + 5*60;
 
 
 $model = (!empty($_GET['model'])) ? $_GET['model'] : NULL;
