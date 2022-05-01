@@ -62,7 +62,7 @@ class mysqlPDODatabase implements IDatabase {
         if (!empty($where)) {
             $sql .= " WHERE $where";
         }
-        $result = $this->query($sql);
+        $result = $this->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 
         foreach($result as $row) {
             $results[] = $row;
