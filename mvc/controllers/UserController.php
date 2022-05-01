@@ -1,12 +1,7 @@
 <?php
 
-include_once 'mvc/models/User.php';
-include_once 'classes/Dependencies.php';
-include_once 'classes/PHPMailerHelper.php';
-
 class UserController {
     public function view_register() {
-        include_once 'mvc/views/User/UserRegister.php';
         $view = new UserRegister;
         $view->display();
     }
@@ -39,7 +34,6 @@ class UserController {
     }
 
     public function view_login(){ 
-        include_once 'mvc/views/User/UserLogin.php';
         $view = new UserLogin;
         $view->display();
     }
@@ -76,7 +70,6 @@ class UserController {
     public function view_login_2nd_step() {
         $usermodel = new User;
 
-        include_once 'mvc/views/User/User2ndStep.php';
         $view = new User2ndStep;
         $view->display();
     }

@@ -1,8 +1,5 @@
 <?php
 
-include_once 'classes/Dependencies.php';
-include_once 'mvc/models/User.php';
-
 class UsersList {
     public function display($opts = []) {
         $user_model = new User();

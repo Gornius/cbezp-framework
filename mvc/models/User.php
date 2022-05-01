@@ -1,9 +1,6 @@
 
 <?php
 
-include_once 'classes/Model.php';
-include_once 'classes/Dependencies.php';
-
 class User extends Model {
     public $table_name = 'users';
     public $fields = [

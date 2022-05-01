@@ -1,7 +1,6 @@
 <?php
 
-include_once 'classes/Dependencies.php';
-include_once 'classes/APIHelper.php';
+include_once 'vendor/autoload.php';
 
 $type = $_GET['type'];
 if (empty($type)) $type = 'model';

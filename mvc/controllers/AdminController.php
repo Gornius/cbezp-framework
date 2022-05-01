@@ -74,7 +74,6 @@ class AdminController {
             $resetmodel_path = 'mvc/models/' . $resetmodel_name . '.php';
 
             if (file_exists($resetmodel_path)) {
-                include_once $resetmodel_path;
                 $model = new $resetmodel_name;
                 $model->reset_db();
 

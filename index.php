@@ -1,7 +1,6 @@
 <?php
 
-include_once 'classes/Dependencies.php';
-
+include_once 'vendor/autoload.php';
 
 session_start();
 $expire_time = $_SESSION['expire_time'];
@@ -30,8 +29,6 @@ if (empty($model)) {
 else {
     $controller_file = 'mvc/controllers/' . $model .'Controller.php';
     if(file_exists($controller_file)) {
-        include_once 'mvc/controllers/' . $model .'Controller.php';
-
         $contoller_class = $model . 'Controller';
         $controller = new $contoller_class;
 

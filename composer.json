@@ -2,5 +2,8 @@
     "require": {
         "smarty/smarty": "^4.1",
         "phpmailer/phpmailer": "^6.6"
+    },
+    "autoload": {
+        "classmap": ["classes", "interfaces", "mvc"]
     }
 }

@@ -1,7 +1,5 @@
 <?php
 
-include_once 'classes/Dependencies.php';
-
 class PostList {
     public function display($list) {
         $ss = Dependencies::get_smarty();

@@ -1,7 +1,4 @@
-
 <?php
-
-include_once 'classes/Dependencies.php';
 
 class UserRegister {
     public function display() {

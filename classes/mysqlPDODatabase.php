@@ -1,8 +1,5 @@
 <?php
 
-include_once 'interfaces/IDatabase.php';
-include_once 'classes/mysqlPDODatabase.php';
-
 class mysqlPDODatabase implements IDatabase {
     private \PDO $mysqlPDO_instance;
 

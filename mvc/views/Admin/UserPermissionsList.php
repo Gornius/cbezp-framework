@@ -1,13 +1,9 @@
 <?php
 
-include_once 'classes/Dependencies.php';
-include_once 'mvc/models/User.php';
-
 class UserPermissionsList {
     public function display($user_id) {
         $user = new User();
 
-        include_once 'mvc/models/Permission.php';
         $permission = new Permission();
 
         $all_permissions = $permission->get_list();

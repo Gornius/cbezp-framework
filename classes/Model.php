@@ -1,7 +1,5 @@
 <?php
 
-include_once 'classes/Dependencies.php';
-
 class Model {
     public $table_name = 'default';
 

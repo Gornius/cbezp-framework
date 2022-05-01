@@ -1,8 +1,5 @@
 <?php
 
-include_once 'interfaces/IDatabase.php';
-include_once 'classes/mysqliDatabase.php';
-
 class mysqliDatabase implements IDatabase {
     private $mysqli_instance;
 

@@ -1,7 +1,5 @@
 <?php
 
-include_once 'classes/Model.php';
-
 class UsersPermissions extends Model {
     public $table_name = 'users_permissions';
     public $fields = [

@@ -1,8 +1,6 @@
 
 <?php
 
-include_once 'classes/Dependencies.php';
-
 class User2ndStep {
     public function display() {
         $ss = Dependencies::get_smarty();

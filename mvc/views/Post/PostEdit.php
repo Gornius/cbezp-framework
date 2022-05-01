@@ -1,7 +1,5 @@
 <?php
 
-include_once 'classes/Dependencies.php';
-
 class PostEdit {
     public function display($record) {
         $ss = Dependencies::get_smarty();

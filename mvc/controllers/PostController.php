@@ -1,11 +1,7 @@
 <?php
 
-include_once 'mvc/models/Post.php';
-include_once 'classes/UserInputFilterService.php';
-
 class PostController {
     public function list() {
-        include_once 'mvc/views/Post/PostList.php';
         $post = new Post;
 
         $posts = $post->get_list('deleted = 0 and type="public"');
@@ -20,7 +16,6 @@ class PostController {
             $record = $post->get_record($record_id);
 
             if (!empty($record)) {
-                include_once 'mvc/views/Post/PostEdit.php';
                 $view = new PostEdit;
                 $view->display($record);
             }
@@ -30,7 +25,6 @@ class PostController {
 
         }
         else {
-            include_once 'mvc/views/Post/PostEdit.php';
             $view = new PostEdit;
             $view->display(NULL); 
         }
