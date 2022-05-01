@@ -22,6 +22,9 @@ class UserController {
         // TODO?: Might implement that later in db
 
         if (empty($record['uses_2step'])) $record['uses_2step'] = '0';
+        
+        // Ensure super_admin can't be created thorugh register
+        $record['super_admin'] = 0;
 
         $user_in_db = $user->find_record("name = '".$record['name']."'");
         if(!empty($user_in_db)) {
