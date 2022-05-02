@@ -9,5 +9,8 @@
         <a class="btn btn-info my-2" href="?model=User&action=view_register">Register</a>
     {else}
         <a class="btn btn-info my-2" href="?model=User&action=logout">Logout ({$user['name']})</a>
+        {if $user['super_admin']}
+        <a class="btn btn-primary my-2" href="?model=Admin&action=users_list">Manage users</a>
+        {/if}
     {/if}
     <br>
