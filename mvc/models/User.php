@@ -85,7 +85,7 @@ class User extends Model {
             }
         }
 
-        $permissions = array_unique(array_merge($permissions_from_roles), SORT_REGULAR);
+        $permissions = array_unique(array_merge($permissions_from_roles, $permissions), SORT_REGULAR);
 
         return $permissions;
     }
