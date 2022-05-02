@@ -12,6 +12,9 @@ class PostController extends Controller{
     public function edit() {
         $record_id = $_GET['id'];
         if (!empty($record_id)){
+            if (!$this->check_access("edit_any_post")) {
+                die('You don\'t have permission to do this!');
+            }
             $post = new Post;
             $record = $post->get_record($record_id);
 
