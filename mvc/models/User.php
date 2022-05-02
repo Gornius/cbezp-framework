@@ -49,4 +49,26 @@ class User extends Model {
         return $bare_permissions;
     }
 
+    public function get_role_list($id) {
+        $sql ="
+        SELECT role.*
+        FROM users
+        LEFT JOIN users_roles on users_roles.user_id = users.id
+        LEFT JOIN role on users_roles.role_id = role.id
+        WHERE users.id = $id
+        ";
+
+        $db = Dependencies::get_database();
+        $result = $db->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+
+        $bare_roles = [];
+        foreach($result as $row){
+            if($row['id'] != NULL) {
+                $bare_roles[] = $row;
+            }
+        }
+
+        return $bare_roles;
+    }
+
 }

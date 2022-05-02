@@ -12,14 +12,12 @@ class AdminController extends Controller{
     }
 
     public function users_list() {
-        require_once 'mvc/views/Admin/UsersList.php';
         $view = new UsersList();
         $view->display();
     }
 
     public function user_permissions_list() {
         $user_id = $_GET['user'];
-        require_once 'mvc/views/Admin/UserPermissionsList.php';
         $view = new UserPermissionsList();
         $view->display($user_id);
     }
@@ -28,7 +26,6 @@ class AdminController extends Controller{
         $user_id = $_GET['user'];
         $permission_id = $_GET['permission'];
 
-        require_once 'mvc/models/UsersPermissions.php';
         $users_permissions = new UsersPermissions();
 
         $record = $users_permissions->find_record("user_id = $user_id AND permission_id = $permission_id");
@@ -43,7 +40,6 @@ class AdminController extends Controller{
         $user_id = $_GET['user'];
         $permission_id = $_POST['permission'];
 
-        require_once 'mvc/models/UsersPermissions.php';
         $users_permissions = new UsersPermissions();
 
         $record = [
@@ -55,6 +51,43 @@ class AdminController extends Controller{
         echo 'Permission has been added to account';
 
         header("Location: /index.php?model=Admin&action=user_permissions_list&user=$user_id");
+    }
+
+    public function user_roles_list() {
+        $user_id = $_GET['user'];
+        $view = new UserRolesList();
+        $view->display($user_id);
+    }
+
+    public function user_roles_delete() {
+        $user_id = $_GET['user'];
+        $role_id = $_GET['role'];
+
+        $users_roles = new UsersRoles();
+
+        $record = $users_roles->find_record("user_id = $user_id AND role_id = $role_id");
+
+        $users_roles->delete($record['id']);
+        echo 'role has been deleted';
+
+        header("Location: /index.php?model=Admin&action=user_roles_list&user=$user_id");
+    }
+
+    public function user_roles_add() {
+        $user_id = $_GET['user'];
+        $role_id = $_POST['role'];
+
+        $users_roles = new UsersRoles();
+
+        $record = [
+            "user_id" => $user_id,
+            "role_id" => $role_id,
+        ];
+
+        $users_roles->save($record);
+        echo 'role has been added to account';
+
+        header("Location: /index.php?model=Admin&action=user_roles_list&user=$user_id");
     }
 
     public function reset_db() {
