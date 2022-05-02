@@ -71,4 +71,34 @@ class User extends Model {
         return $bare_roles;
     }
 
+    public function get_permissions_list_combined($id) {
+        $role_model = new Role();
+
+        $permissions = $this->get_permissions_list($id);
+        $roles = $this->get_role_list($id);
+
+        $permissions_from_roles = [];
+        foreach($roles as $role) {
+            $local_permissions = $role_model->get_permissions_list($role['id']);
+            foreach($local_permissions as $p) {
+                $permissions_from_roles[] = $p;
+            }
+        }
+
+        $permissions = array_unique(array_merge($permissions_from_roles), SORT_REGULAR);
+
+        return $permissions;
+    }
+
+    public function get_permission_names($id) {
+        $permissions_names = [];
+        $permissions = $this->get_permissions_list_combined($id);
+
+        foreach($permissions as $permission) {
+            $permissions_names[] = $permission['name'];
+        }
+
+        return $permissions_names;
+    }
+
 }
