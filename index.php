@@ -7,6 +7,7 @@ $expire_time = $_SESSION['expire_time'];
 if (!empty($expire_time)) {
     if ($expire_time < time()) {
         session_destroy();
+        die('Session expired!');
     }
 }
 
