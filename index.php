@@ -29,6 +29,7 @@ $page_header->display('page/header.tpl');
 if (empty($model)) {
     $ss = Dependencies::get_smarty();
     $ss->assign('title', 'Homepage');
+    $ss->assign('user', $loaded_user);
     $ss->display('home.tpl');
 }
 

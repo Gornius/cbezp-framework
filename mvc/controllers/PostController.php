@@ -9,6 +9,15 @@ class PostController extends Controller{
         $view->display($posts);
     }
 
+    public function list_own() {
+        $post = new Post;
+        global $loaded_user;
+
+        $posts = $post->get_list('deleted = 0 and user_id="'.$loaded_user['id'].'"');
+        $view = new PostList;
+        $view->display($posts);
+    }
+
     public function edit() {
         $record_id = $_GET['id'];
         if (!empty($record_id)){
