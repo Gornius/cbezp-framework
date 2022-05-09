@@ -23,4 +23,13 @@ class Post extends Model {
             'default' => 0,
         ]
     ];
+
+    // Override default save method to include author
+    public function save($record) {
+        if (isset($_SESSION['user'])) {
+        $record['user_id'] = $_SESSION['user']['id'];
+        }
+
+        parent::save($record);
+    }
 }

@@ -3,6 +3,7 @@
     <th>
         <td>Tytuł</td>
         <td>Wiadomość</td>
+        <td>Autor</td>
         <td>Akcje</td>
     </th>
 </header>
@@ -12,6 +13,7 @@
         <td>{$post['id']}</td>
         <td>{$post['name']}</td>
         <td>{$post['message']}</td>
+        <td>{$post['user_name']}</td>
         <td><a href="index.php?model=Post&action=edit&id={$post['id']}">✏️</a>
         <a href="index.php?model=Post&action=delete&id={$post['id']}">❌</a></td>
     </tr>
