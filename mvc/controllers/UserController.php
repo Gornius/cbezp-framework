@@ -56,7 +56,7 @@ class UserController extends Controller{
                 $this->view_login_2nd_step($record);
             }
             else {
-                $_SESSION['user'] = $user_in_db;
+                $_SESSION['user'] = $user_in_db['id'];
                 header('Location: /');
             }
         }

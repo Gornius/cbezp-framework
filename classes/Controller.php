@@ -12,7 +12,8 @@ class Controller {
      */
     public function check_access($permission) {
         $user_model = new User();
-        $user = $_SESSION['user'];
+        global $loaded_user;
+        $user = $loaded_user;
 
         if (empty($user)) return false;
 
@@ -25,7 +26,8 @@ class Controller {
     }
 
     public function check_super_admin() {
-        $user = $_SESSION['user'];
+        global $loaded_user;
+        $user = $loaded_user;
         if (!$user['super_admin']) {
             return false;
         }

@@ -13,12 +13,17 @@ if (!empty($expire_time)) {
 
 $_SESSION['expire_time'] = time() + 5*60;
 
+// Load user
+if (isset($_SESSION['user'])) {
+    $loaded_user = new User();
+    $loaded_user = $loaded_user->get_record($_SESSION['user']);
+}
 
 $model = (!empty($_GET['model'])) ? $_GET['model'] : NULL;
 $action = (!empty($_GET['action'])) ? $_GET['action'] : 'list';
 
 $page_header = Dependencies::get_smarty();
-$page_header->assign('user', $_SESSION['user']);
+$page_header->assign('user', $loaded_user);
 $page_header->display('page/header.tpl');
 
 if (empty($model)) {

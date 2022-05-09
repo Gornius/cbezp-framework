@@ -17,7 +17,6 @@ class Permission extends Model {
             'edit_own_post',
             'view_public_posts',
             'view_own_private_posts',
-            'view_all_posts',
         ];
 
         foreach($hardcoded_permissions as $permission) {
