@@ -38,6 +38,9 @@ class mysqlPDODatabase implements IDatabase {
             id INT NOT NULL AUTO_INCREMENT";
         foreach ($model->fields as $key => $value) {
             $sql .= ", $key " . $value['db_type'];
+            if ($value['nullable']) {
+                $sql .= " NULL";
+            }
         }
 
         foreach($model->fields as $field => $params) {
