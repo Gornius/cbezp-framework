@@ -1,3 +1,5 @@
 /vendor
 /cache
 /config/mail.php
+/config/mysqli.php
+/config/mysqlPDO.php
