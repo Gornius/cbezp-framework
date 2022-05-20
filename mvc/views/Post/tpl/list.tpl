@@ -14,8 +14,14 @@
         <td>{$post['name']}</td>
         <td>{$post['message']}</td>
         <td>{$post['user_name']}</td>
-        <td><a href="index.php?model=Post&action=edit&id={$post['id']}">✏️</a>
-        <a href="index.php?model=Post&action=delete&id={$post['id']}">❌</a></td>
+        <td>
+        {if ($user['id'] == $post['user_id'] || $global_editable)}
+        <a href="index.php?model=Post&action=edit&id={$post['id']}">✏️</a>
+        {/if}
+        {if ($user['id'] == $post['user_id'] || $global_deletable)}
+        <a href="index.php?model=Post&action=delete&id={$post['id']}">❌</a>
+        {/if}
+        </td>
     </tr>
 {/foreach}
 </tbody>

@@ -19,6 +19,10 @@ if (isset($_SESSION['user'])) {
     $loaded_user = $loaded_user->get_record($_SESSION['user']);
 }
 
+$user = new User();
+// var_dump($user->check_access($loaded_user['id'], 'edit_any_post'));
+// var_dump($user->get_permission_names($loaded_user['id']));
+
 $model = (!empty($_GET['model'])) ? $_GET['model'] : NULL;
 $action = (!empty($_GET['action'])) ? $_GET['action'] : 'list';
 
