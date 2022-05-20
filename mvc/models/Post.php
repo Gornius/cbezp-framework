@@ -28,7 +28,7 @@ class Post extends Model {
     public function save($record) {
         global $loaded_user;
         $user = new User();
-        if (isset($record['id']) && $loaded_user['id'] != $record['user_id'] && !$user->check_access($loaded_user['id'], 'edit_any_post')) {
+        if (!empty($record['id']) && $loaded_user['id'] != $record['user_id'] && !$user->check_access($loaded_user['id'], 'edit_any_post')) {
             die('You don\'t have permission to edit this post!');
         }
 
@@ -38,5 +38,14 @@ class Post extends Model {
         }
 
         parent::save($record);
+    }
+
+    // Override default save method to include author
+    public function delete($record) {
+        global $loaded_user;
+        $user = new User();
+        if (!empty($record['id']) && $loaded_user['id'] != $record['user_id'] && !$user->check_access($loaded_user['id'], 'edit_any_post')) {
+            die('You don\'t have permission to edit this post!');
+        }
     }
 }
