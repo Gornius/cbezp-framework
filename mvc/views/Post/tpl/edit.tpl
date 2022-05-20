@@ -1,6 +1,7 @@
 <form style="width: 400px;" action='index.php?model=Post&action=save' method='post'>
     <input type="hidden" name="deleted" value="0" />
     <input type="hidden" name="id" value="{$record['id']}" />
+    <input type="hidden" name="user_id" value="{$record['user_id']}"
     Name:<br>
     <input class="form-control" type="text" id="name" name="name" value="{$record['name']}" /><br>
     Type:<br>
