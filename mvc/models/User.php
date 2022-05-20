@@ -112,12 +112,10 @@ class User extends Model {
      */
     public function check_access($id, $permission) {
         $user_model = new User();
-        global $loaded_user;
-        $user = $loaded_user;
 
         if (empty($user)) return false;
 
-        $permissions = $user_model->get_permission_names($user['id']);
+        $permissions = $user_model->get_permission_names($id);
 
         if(in_array($permission, $permissions)) {
             return true;
