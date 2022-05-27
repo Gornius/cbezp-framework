@@ -57,6 +57,7 @@ class UserController extends Controller{
             }
             else {
                 $_SESSION['user'] = $user_in_db['id'];
+                LoginAudit::log('login_one_step');
                 header('Location: /');
             }
         }
@@ -85,11 +86,13 @@ class UserController extends Controller{
             unset($_SESSION['user_to_validate']);
             unset($_SESSION['validation_code']);
             echo 'Logged in!';
+            LoginAudit::log('login_2nd_step');
             header('Location: /');
         }
     }
 
     public function logout() {
+        LoginAudit::log('logout');
         unset($_SESSION['user']);
         header('Location: /');
     }
